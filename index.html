@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Star Messages</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="instructions">✦ Click all the stars ✦</div>
+        <div class="sky" id="sky"><div class="moon"></div></div>
+        <div class="message-box hidden" id="messageBox">
+            <p id="messageText"></p>
+            <button id="closeBtn">Close</button>
+        </div>
+        <!-- Final popup (only this shows at the end) -->
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <h2>Happy Monthsary, Love</h2>
+                <!-- Direct PDF download link -->
+                <a
+                    href="happy 16 months my love.pdf"
+                    download="Happy-Monthsary.pdf"
+                    id="downloadBtn"
+                    class="download-link"
+                >
+                    ⭳ Download as PDF
+                </a>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

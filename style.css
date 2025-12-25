@@ -1,0 +1,262 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --ink: #fff;
+    --bg: #030416;
+    --glow: #ffeab9;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at 30% 20%, #0b0b30, #030416 70%);
+    overflow: hidden;
+    font-family: "Patrick Hand", sans-serif;
+    color: var(--ink);
+    touch-action: manipulation;
+}
+
+/* instruction text */
+.instructions {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    color: #fff8e8;
+    text-shadow: 0 0 8px #fff8e8;
+    animation: floatText 3s ease-in-out infinite;
+    z-index: 5;
+    pointer-events: none;
+}
+@keyframes floatText {
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -5px);
+        opacity: 0.9;
+    }
+}
+
+/* sky and moon */
+.sky {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 60%, #0d0d2d 0%, #01010c 80%);
+}
+
+.moon {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        #fffef7 0%,
+        #f0f0e0 40%,
+        #cfcfcf 70%
+    );
+    border-radius: 50%;
+    box-shadow: 0 0 60px 20px rgba(255, 255, 230, 0.3);
+    z-index: 1;
+}
+
+/* background stars */
+.bg-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: bgTwinkle 3s infinite ease-in-out;
+}
+@keyframes bgTwinkle {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+}
+
+/* clickable stars */
+.star {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--glow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 4px rgba(255, 255, 210, 0.5);
+    opacity: 0.8;
+    animation: twinkle 2.5s infinite ease-in-out;
+    cursor: pointer;
+    transition:
+        transform 0.3s,
+        opacity 0.3s;
+    z-index: 2;
+}
+.star.clicked {
+    background: #fff;
+    box-shadow: 0 0 14px 6px #ffd;
+    transform: scale(1.3);
+    opacity: 1;
+}
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* shooting stars */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1), transparent);
+    opacity: 0.8;
+    transform: rotate(45deg);
+    animation: shoot 1.5s ease-out forwards;
+    z-index: 1;
+}
+@keyframes shoot {
+    from {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+    to {
+        transform: translate(300px, 300px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* message box */
+.message-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 20px 30px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    text-align: center;
+    color: #fff;
+    max-width: 300px;
+    animation: fadeIn 0.4s ease;
+    z-index: 6;
+}
+.message-box button {
+    margin-top: 10px;
+    border: none;
+    background: #fff;
+    color: #222;
+    font-family: "Patrick Hand", sans-serif;
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.message-box button:hover {
+    background: #ffeab9;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.popup.show {
+    display: flex;
+    opacity: 1;
+}
+.popup-content {
+    background: #fffef7;
+    border: 3px solid #111;
+    border-radius: 18px;
+    padding: 24px 40px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+.popup-content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* styled download link */
+.download-link {
+    display: inline-block;
+    border: none;
+    background: #ffeab9;
+    font-family: "Patrick Hand", sans-serif;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+.download-link:hover {
+    background: #ffd88a;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+    .instructions {
+        font-size: 16px;
+        top: 40px;
+    }
+    .moon {
+        width: 80px;
+        height: 80px;
+    }
+    .star {
+        width: 8px;
+        height: 8px;
+    }
+    .popup-content {
+        width: 80%;
+        padding: 20px;
+    }
+}
